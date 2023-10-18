@@ -1,0 +1,25 @@
+
+version: '3.8'
+services:
+  jenkinsm1:
+    image: 'jenkins/jenkins:lts'
+    restart: unless-stopped
+    hostname: 'jenkins-m1-h'
+    container_name: 'jenkins-m1-c'
+    privileged: true
+    user: root
+    # environment:
+    #   - KEY="VALUE"
+    # command: 
+    #   - '--config.file=/etc/prometheus/prometheus.yml'
+    # networks:
+    #   - jk
+    ports:
+      - '8080:8080'
+      - '50000:50000'
+    volumes:
+      - '$APP_DC_HOMEDIR/jk-config/svc-1/config:/etc/jk'
+      - '$APP_DC_HOMEDIR/jk-pdata/jenkins_home:/var/jenkins_home'
+
+
+
